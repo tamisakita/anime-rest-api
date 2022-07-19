@@ -22,7 +22,7 @@ public class AnimeModel {
     @Column(nullable = false, length = 10)
     public String genre;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 500)
     public String synopsis;
 
     public Integer getCode() {
