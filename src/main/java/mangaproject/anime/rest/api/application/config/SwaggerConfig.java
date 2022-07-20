@@ -24,8 +24,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
 
         return new ApiInfoBuilder()
-                .title ("API de Teste")
-                .description ("Essa é uma API de desenvolvida para cadastrar mangas.")
+                .title ("API para Cadastrar Anime")
+                .description ("Essa é uma API de desenvolvida para cadastrar animes.")
                 .version("1.0.0")
                 .build();
 

@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "anime")
+//@Entity(name = "anime")
 public class AnimeResponseRepresentation {
 
     @JsonProperty("id")

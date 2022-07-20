@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import mangaproject.anime.rest.api.domain.domain.Anime;
 import mangaproject.anime.rest.api.domain.port.AnimeRepositoryPort;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 public class AnimeService {
 
@@ -21,4 +24,14 @@ public class AnimeService {
             throw e;
         }
     }
+
+    public List<Anime> searchAnime() {
+        try {
+            return this.animeRepositoryPort.searchAnime();
+        } catch (Exception e) {
+            log.error("The anime doesn't exist", e);
+            throw e;
+        }
+    }
+
 }

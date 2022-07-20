@@ -12,9 +12,6 @@ import mangaproject.anime.rest.api.application.presentation.representation.enums
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AnimeRequestRepresentation {
 
-    @JsonProperty("id")
-    private Long id;
-
     @JsonProperty("name")
     private String name;
 
