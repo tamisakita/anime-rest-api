@@ -1,4 +1,4 @@
-#Manga Project
+# Manga Project
 
 ## Project proposal
 Create a API REST to control Anime registration with Spring Boot, hexagonal architecture and Swagger Documentation.
