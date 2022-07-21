@@ -39,14 +39,9 @@ public class AnimeRepositoryImpl implements AnimeRepositoryPort {
 
     @Override
     public Anime searchAnimeById(Long id) {
-        return null;
+        var animeById = animeJpa.findById(id).get();
+        return AnimeMapper.entityToDomain(animeById);
     }
-
-//    @Override
-//    public Optional<Anime> searchAnimeById(Long id) {
-//        var animeById = animeJpa.findById(id);
-//        return null;
-//    }
 
     @Override
     public Anime updateAnime(Long id, Anime anime) {

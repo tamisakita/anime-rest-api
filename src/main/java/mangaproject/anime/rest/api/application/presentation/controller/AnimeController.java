@@ -3,7 +3,6 @@ package mangaproject.anime.rest.api.application.presentation.controller;
 import mangaproject.anime.rest.api.application.mapper.AnimeMapper;
 import mangaproject.anime.rest.api.application.presentation.representation.AnimeRequestRepresentation;
 import mangaproject.anime.rest.api.application.presentation.representation.AnimeResponseRepresentation;
-import mangaproject.anime.rest.api.application.repository.jpa.entity.AnimeEntity;
 import mangaproject.anime.rest.api.domain.service.AnimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,10 +41,11 @@ public class AnimeController {
         return ResponseEntity.ok(representationList);
     }
 
-//    @GetMapping(path = "/api/anime/{id}")
-//    public ResponseEntity<Anime> searchAnimeById(@PathVariable(value = "id") Long id) {
-//        return
-//    }
+    @GetMapping(path = "/api/anime/{id}")
+    public ResponseEntity<AnimeResponseRepresentation> searchAnimeById(@PathVariable(value = "id") Long id) {
+        var animeById = animeService.searchAnimeById(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(AnimeMapper.toRepresentation(animeById));
+    }
 
     @PutMapping(path = "api/anime/{id}")
     public ResponseEntity<AnimeResponseRepresentation> updateAnime(
