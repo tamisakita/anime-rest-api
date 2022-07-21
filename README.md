@@ -4,7 +4,7 @@
 Create a API REST to control Anime registration with Spring Boot, hexagonal architecture and Swagger Documentation.
 
 ## Technologies
- * Java
+ * Java 18
  * Spring Boot
  * Maven  
  * H2 Data Base
