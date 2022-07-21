@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 public enum genreType {
 
     ACTION("Action"),
-    ADVENTURE("Adventure");
+    ADVENTURE("Adventure"),
+    ROMANCE("Romance"),
+    DRAMA("Drama"),
+    FICTION("Fiction");
 
     private final String type;
 }

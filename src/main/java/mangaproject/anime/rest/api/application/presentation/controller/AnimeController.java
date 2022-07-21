@@ -42,4 +42,22 @@ public class AnimeController {
         return ResponseEntity.ok(representationList);
     }
 
+//    @GetMapping(path = "/api/anime/{id}")
+//    public ResponseEntity<Anime> searchAnimeById(@PathVariable(value = "id") Long id) {
+//        return
+//    }
+
+    @PutMapping(path = "api/anime/{id}")
+    public ResponseEntity<AnimeResponseRepresentation> updateAnime(
+            @PathVariable(value = "id") Long id,
+            @RequestBody AnimeRequestRepresentation body) {
+
+        var animeUpdated = animeService.updateAnime(id, AnimeMapper.toDomain(body));
+        var animeToSave = animeService.save(animeUpdated);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(AnimeMapper.toRepresentation(animeToSave));
+
+    }
+
+
 }

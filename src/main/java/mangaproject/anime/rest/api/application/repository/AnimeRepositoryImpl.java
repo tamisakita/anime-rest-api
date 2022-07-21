@@ -10,6 +10,7 @@ import mangaproject.anime.rest.api.domain.port.AnimeRepositoryPort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Repository
@@ -36,9 +37,34 @@ public class AnimeRepositoryImpl implements AnimeRepositoryPort {
         return AnimeMapper.toDomainList(animeEntityList);
     }
 
+    @Override
+    public Anime searchAnimeById(Long id) {
+        return null;
+    }
+
 //    @Override
-//    public Anime getAnimeById(Anime anime) {
-//        return anime;
+//    public Optional<Anime> searchAnimeById(Long id) {
+//        var animeById = animeJpa.findById(id);
+//        return null;
 //    }
+
+    @Override
+    public Anime updateAnime(Long id, Anime anime) {
+        var animeEntitybyId= animeJpa.findById(id);
+        AnimeEntity animeToUpdate = animeEntitybyId.get();
+
+        if (animeEntitybyId.isPresent()) {
+            animeToUpdate.setId(animeToUpdate.getId());
+            animeToUpdate.setName(anime.getName());
+            animeToUpdate.setAuthor(anime.getAuthor());
+            animeToUpdate.setYearPublication(anime.getYearPublication());
+            animeToUpdate.setEpisodesNumber(anime.getEpisodesNumber());
+           // animeToUpdate.setGenre(anime.getGenre());
+            animeToUpdate.setSynopsis(anime.getSynopsis());
+        }
+
+        var animeEntity = animeJpa.save(animeToUpdate);
+        return AnimeMapper.entityToDomain(animeEntity);
+    }
 
 }
