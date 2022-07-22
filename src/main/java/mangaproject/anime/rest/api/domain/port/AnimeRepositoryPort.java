@@ -15,6 +15,6 @@ public interface AnimeRepositoryPort {
 
     Anime updateAnime(Long id, Anime anime);
 
-    Anime deleteAnime(Long id);
+    void deleteAnime(Long id);
 
 }

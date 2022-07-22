@@ -24,7 +24,7 @@ public class AnimeController {
         this.animeService = animeService;
     }
 
-    @PostMapping(path = "/api/anime/save")
+    @PostMapping(path = "/save")
     public ResponseEntity<AnimeResponseRepresentation> save(@RequestBody AnimeRequestRepresentation body) {
         var anime = animeService.save(AnimeMapper.toDomain(body));
         if (nonNull(anime)) {
@@ -33,7 +33,7 @@ public class AnimeController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping(path = "/api/anime")
+    @GetMapping(path = "/")
     public ResponseEntity<List<AnimeResponseRepresentation>> searchAnime() {
         var animeList = animeService.searchAnime();
         //convertendo o list do domain para representation
@@ -41,28 +41,27 @@ public class AnimeController {
         return ResponseEntity.ok(representationList);
     }
 
-    @GetMapping(path = "/api/anime/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<AnimeResponseRepresentation> searchAnimeById(@PathVariable(value = "id") Long id) {
         var animeById = animeService.searchAnimeById(id);
         return ResponseEntity.status(HttpStatus.OK).body(AnimeMapper.toRepresentation(animeById));
     }
 
-    @PutMapping(path = "api/anime/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity<AnimeResponseRepresentation> updateAnime(
             @PathVariable(value = "id") Long id,
             @RequestBody AnimeRequestRepresentation body) {
 
         var animeUpdated = animeService.updateAnime(id, AnimeMapper.toDomain(body));
-        var animeToSave = animeService.save(animeUpdated);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(AnimeMapper.toRepresentation(animeToSave));
+        return ResponseEntity.status(HttpStatus.CREATED).body(AnimeMapper.toRepresentation(animeUpdated));
 
     }
 
-    @DeleteMapping("api/anime/{id}")
-    public ResponseEntity<AnimeResponseRepresentation> deleteAnime(@PathVariable(value = "id") Long id) {
-        var animeToDelete = animeService.deleteAnime(id);
-        return ResponseEntity.status(HttpStatus.OK).body(AnimeMapper.toRepresentation(animeToDelete));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAnime(@PathVariable(value = "id") Long id) {
+        animeService.deleteAnime(id);
+        return ResponseEntity.ok().build();
     }
 
 }

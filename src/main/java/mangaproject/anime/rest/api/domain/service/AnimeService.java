@@ -51,9 +51,9 @@ public class AnimeService {
         }
     }
 
-    public Anime deleteAnime(Long id) {
+    public void deleteAnime(Long id) {
         try {
-            return this.animeRepositoryPort.deleteAnime(id);
+            this.animeRepositoryPort.deleteAnime(id);
         } catch (Exception e) {
             log.error("The anime doesn't exist", e);
             throw e;
