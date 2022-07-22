@@ -51,4 +51,13 @@ public class AnimeService {
         }
     }
 
+    public Anime deleteAnime(Long id) {
+        try {
+            return this.animeRepositoryPort.deleteAnime(id);
+        } catch (Exception e) {
+            log.error("The anime doesn't exist", e);
+            throw e;
+        }
+    }
+
 }

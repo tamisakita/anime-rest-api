@@ -44,7 +44,7 @@ public class AnimeController {
     @GetMapping(path = "/api/anime/{id}")
     public ResponseEntity<AnimeResponseRepresentation> searchAnimeById(@PathVariable(value = "id") Long id) {
         var animeById = animeService.searchAnimeById(id);
-        return ResponseEntity.status(HttpStatus.CREATED).body(AnimeMapper.toRepresentation(animeById));
+        return ResponseEntity.status(HttpStatus.OK).body(AnimeMapper.toRepresentation(animeById));
     }
 
     @PutMapping(path = "api/anime/{id}")
@@ -59,5 +59,10 @@ public class AnimeController {
 
     }
 
+    @DeleteMapping("api/anime/{id}")
+    public ResponseEntity<AnimeResponseRepresentation> deleteAnime(@PathVariable(value = "id") Long id) {
+        var animeToDelete = animeService.deleteAnime(id);
+        return ResponseEntity.status(HttpStatus.OK).body(AnimeMapper.toRepresentation(animeToDelete));
+    }
 
 }

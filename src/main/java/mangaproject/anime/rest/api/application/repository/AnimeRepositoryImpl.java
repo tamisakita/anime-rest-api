@@ -45,10 +45,10 @@ public class AnimeRepositoryImpl implements AnimeRepositoryPort {
 
     @Override
     public Anime updateAnime(Long id, Anime anime) {
-        var animeEntitybyId= animeJpa.findById(id);
-        AnimeEntity animeToUpdate = animeEntitybyId.get();
+        var animeEntityById= animeJpa.findById(id);
+        AnimeEntity animeToUpdate = animeEntityById.get();
 
-        if (animeEntitybyId.isPresent()) {
+        if (animeEntityById.isPresent()) {
             animeToUpdate.setId(animeToUpdate.getId());
             animeToUpdate.setName(anime.getName());
             animeToUpdate.setAuthor(anime.getAuthor());
@@ -60,6 +60,19 @@ public class AnimeRepositoryImpl implements AnimeRepositoryPort {
 
         var animeEntity = animeJpa.save(animeToUpdate);
         return AnimeMapper.entityToDomain(animeEntity);
+    }
+
+    @Override
+    public Anime deleteAnime(Long id) {
+        var animeToDelete = animeJpa.getReferenceById(id);
+
+        if (animeToDelete != null) {
+            animeJpa.delete(animeToDelete);
+        } else {
+            return null;
+        }
+
+        return AnimeMapper.entityToDomain(animeToDelete);
     }
 
 }
