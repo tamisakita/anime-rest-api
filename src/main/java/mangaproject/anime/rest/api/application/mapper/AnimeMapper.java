@@ -34,18 +34,6 @@ public class AnimeMapper {
         return modelMapperSupplier.get().map(entity, Anime.class);
     }
 
-    //representation -> domain -> entity
-//    public List<Anime> entityListToDomainList(List<AnimeEntity> animeEntityList) {
-//        List<Anime> animeList = new ArrayList<>();
-//        for (AnimeEntity animeEntity : animeEntityList) {
-//            animeList.add(entityToDomain(animeEntity));
-//        }
-//
-//        return animeList;
-//    }
-//
-
-
     // do list<anime> -> Domain para list<animeResponseRepresentation> -> Representation
     public List<AnimeResponseRepresentation> toAnimeResponseRepresentationList(List<Anime> animeList) {
         List<AnimeResponseRepresentation> animeRepresentationList = new ArrayList<>();
