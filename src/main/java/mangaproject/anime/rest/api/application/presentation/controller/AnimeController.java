@@ -24,7 +24,7 @@ public class AnimeController {
         this.animeService = animeService;
     }
 
-    @PostMapping(path = "/save")
+    @PostMapping(path = "/anime")
     public ResponseEntity<AnimeResponseRepresentation> save(@RequestBody AnimeRequestRepresentation body) {
         var anime = animeService.save(AnimeMapper.toDomain(body));
         if (nonNull(anime)) {
